@@ -17,9 +17,9 @@ import SwiftUI
 
 
 // outside of the class
-func createCardContent(pairIndex: Int) -> String {
-     return "✅️"
- }
+//func createCardContent(pairIndex: Int) -> String {
+//     return "✅️"
+// }
 
 class EmojiMatchGame {
 
@@ -28,12 +28,13 @@ class EmojiMatchGame {
     // replace (Int) -> String placeholder from MemoryGame by creating func above
     //        MemoryGame(numberOfPairs: Int, cardContentFactory: (Int)->String)
     
-    private var model: MemoryGame<String> = MemoryGame(
-        // declares a var model of type MemoryGame<String>
-        // sets number of pairs to 2 and passes the functoion createCardcontent as cardContentFactory
-        numberOfPairs: 2,
-        cardContentFactory: createCardContent
-    )
+    // declares a var model of type MemoryGame<String>
+    // sets number of pairs to 2 and passes the functoion createCardcontent as cardContentFactory
+    
+    private var model: MemoryGame<String> = MemoryGame(numberOfPairs: 2, cardContentFactory: { (pairIndex: Int) -> String in
+        // move curly from after String to in front of pairIndex and add 'in' behind String
+        "✅️"    // no longer need return
+    })
     
     // MARK - Access to the cards
     
