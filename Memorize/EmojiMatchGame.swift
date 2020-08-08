@@ -31,10 +31,10 @@ class EmojiMatchGame {
     // declares a var model of type MemoryGame<String>
     // sets number of pairs to 2 and passes the functoion createCardcontent as cardContentFactory
     
-    private var model: MemoryGame<String> = MemoryGame(numberOfPairs: 2, cardContentFactory: { (pairIndex: Int) -> String in
-        // move curly from after String to in front of pairIndex and add 'in' behind String
-        "✅️"    // no longer need return
-    })
+    private var model: MemoryGame<String> = MemoryGame(numberOfPairs: 2) { pairIndex in "✅️" }
+    // can condense cardContentFactory since the last argument
+    // close the parense around the first arg and drop the type declarations
+    // move curly brackets around pairIndex code
     
     // MARK - Access to the cards
     
