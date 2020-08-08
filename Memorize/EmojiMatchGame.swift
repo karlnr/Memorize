@@ -16,11 +16,6 @@ import SwiftUI
 // ViewModel is a portal for views to get to the Model, 'a door'
 
 
-// outside of the class
-//func createCardContent(pairIndex: Int) -> String {
-//     return "✅️"
-// }
-
 class EmojiMatchGame {
 
     
@@ -31,10 +26,18 @@ class EmojiMatchGame {
     // declares a var model of type MemoryGame<String>
     // sets number of pairs to 2 and passes the functoion createCardcontent as cardContentFactory
     
-    private var model: MemoryGame<String> = MemoryGame(numberOfPairs: 2) { pairIndex in "✅️" }
-    // can condense cardContentFactory since the last argument
-    // close the parense around the first arg and drop the type declarations
-    // move curly brackets around pairIndex code
+    private var model: MemoryGame<String> = EmojiMatchGame.createMemoryGame()
+    // add EmojiMatchGame prefix since func is static
+    
+
+    // static func makes it a function on the type instead of the instance
+    static func createMemoryGame() -> MemoryGame<String> {
+        let emojis = ["🌲️", "🐦️", "🦆️", "🐻️"]   // constant array
+        return MemoryGame<String>(numberOfPairs: emojis.count) { pairIndex in
+            return emojis[pairIndex]
+        }
+    }
+    
     
     // MARK - Access to the cards
     
@@ -54,9 +57,8 @@ class EmojiMatchGame {
 }
 
 
-
-struct EmojiMatchGame_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
-}
+//struct EmojiMatchGame_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Text("Hello, World!")
+//    }
+//}

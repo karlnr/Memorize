@@ -26,8 +26,8 @@ struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
             let content = cardContentFactory(pairIndex)
             // content doesnt vary on each iteration so use let
             // dont have to declare type CardContent because of type inference
-            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
-            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
+            cards.append(Card(content: content, id: pairIndex*2))
+            cards.append(Card(content: content, id: pairIndex*2+1))
         }
     }
     
@@ -39,10 +39,12 @@ struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
 
     // cards have these parameters, include within MemoryGame struct
     // so we know it is a MemoryGame Card type
-    struct Card {
-        var isFaceUp: Bool
-        var isMatched: Bool
+    struct Card: Identifiable {
+        var isFaceUp: Bool = true
+        var isMatched: Bool = false
         var content: CardContent    // dont care what type of content
+        var id: Int                 // make identifiable for the ForEach in ContentView
+        // example of 'constrains and gains'
     }
     
     
