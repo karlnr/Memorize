@@ -1,5 +1,5 @@
 //
-//  EmojiMatchGame.swift
+//  EmojiMemoryGame.swift
 //  Memorize
 //
 //  Created by Karl Northrup on 8/8/20.
@@ -16,7 +16,7 @@ import SwiftUI
 // ViewModel is a portal for views to get to the Model, 'a door'
 
 
-class EmojiMatchGame {
+class EmojiMemoryGame {
 
     
     //not initialized, so add init() to MemoryGame
@@ -26,14 +26,14 @@ class EmojiMatchGame {
     // declares a var model of type MemoryGame<String>
     // sets number of pairs to 2 and passes the functoion createCardcontent as cardContentFactory
     
-    private var model: MemoryGame<String> = EmojiMatchGame.createMemoryGame()
-    // add EmojiMatchGame prefix since func is static
+    private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    // add EmojiMemoryGame prefix since func is static
     
-
     // static func makes it a function on the type instead of the instance
     static func createMemoryGame() -> MemoryGame<String> {
-        let emojis = ["🌲️", "🐦️", "🦆️", "🐻️"]   // constant array
-        return MemoryGame<String>(numberOfPairs: emojis.count) { pairIndex in
+        let emojis = ["🐦️", "🦆️", "🐻️", "🐶️", "🐴️"]   // constant array
+        let pairs = [2,3,4,5]                          // random # of pairs for each game
+        return MemoryGame<String>(numberOfPairs: pairs.randomElement()! ) { pairIndex in
             return emojis[pairIndex]
         }
     }

@@ -13,22 +13,27 @@ import SwiftUI
 // var body means stored in memory
 // some View means any type that behaves like a View (could be Text, etc)
 struct ContentView: View {
+    // viewModel is a pointer since EmojiMemoryGame is a class
+    var viewModel: EmojiMemoryGame   // not initialized so set in SceneDelegate
     
-    // viewModel is a pointer since EmojiMatchGame is a class
-    var viewModel: EmojiMatchGame   // not initialized so set in SceneDelegate
     var body: some View {
         HStack {
             // ForEach takes any iterable thing, but needs to be Identifiable if not range of Int
             ForEach (viewModel.cards) { card in
-                CardView(card: card).onTapGesture {     // can drop the perform: part and make inline
-                    self.viewModel.choose(card: card)   // still have to  use self here 'requires explicit self'
+                if self.viewModel.cards.count < 10 {        // large font unless 5 pairs
+                    CardView(card: card).onTapGesture {     // can drop the perform: part and make inline
+                        self.viewModel.choose(card: card)   // still have to  use self here 'requires explicit self'
+                    }
+                    .font(Font.largeTitle)
+                } else {
+                    CardView(card: card).onTapGesture {     // can drop the perform: part and make inline
+                        self.viewModel.choose(card: card)   // still have to  use self here 'requires explicit self'
+                    }
                 }
             }
         }
-            .padding()
-            .foregroundColor(Color.orange) // Font and Color are types,
-            .font(Font.largeTitle)         // orange and largeTitle are vars
-        
+        .padding()
+        .foregroundColor(Color.orange) // Font and Color are types,
     }
 }
 
@@ -46,12 +51,14 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 10.0).fill()
             }
         }
+        .aspectRatio(2/3, contentMode: ContentMode.fit) // cards 2:3 width to height ratio
     }
 }
 
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: EmojiMatchGame())
+        ContentView(viewModel: EmojiMemoryGame())
     }
 }

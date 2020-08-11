@@ -14,11 +14,9 @@ import Foundation
 // uses: array of cards and choose function, and card type
 
 struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
-    
     // array of cards
     var cards: Array<Card>  // array, doesnt care what card type
-    
-    
+
     // pass a function (Int) -> CardContent to init
     init(numberOfPairs: Int, cardContentFactory: (Int) -> CardContent) {
         cards = Array<Card>()
@@ -28,6 +26,7 @@ struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
             // dont have to declare type CardContent because of type inference
             cards.append(Card(content: content, id: pairIndex*2))
             cards.append(Card(content: content, id: pairIndex*2+1))
+            cards.shuffle()     // array shuffle
         }
     }
     
@@ -36,7 +35,6 @@ struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
         print("card chosen \(card)")
     }
     
-
     // cards have these parameters, include within MemoryGame struct
     // so we know it is a MemoryGame Card type
     struct Card: Identifiable {
