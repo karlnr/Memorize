@@ -31,9 +31,34 @@ struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
     }
     
     // func that can be used by others to act on a card
-    func choose(card: Card) -> Void {   // returns nothing
+    mutating func choose(card: Card) -> Void {
+        
+        // MARK: Lec 3 - Mutating Func Notes
+        /*
+         * Mutating Structs
+         - cards is an Array & mutable; Card is a struct; all structs are copies;
+         accessing card here is accessing a copy of card from the array;
+         cannot toggle isFaceUp directly with card.IsFaceUp; requires self._
+         - copy behaviour is copy-on-write, so mutating with self._ doesn't
+         actually change the value bitwise when declared; only when something is changed;
+         all funcs modifying structs incl 'self' need 'mutating func'
+         - all inits are implicit mutating funcs
+         
+         - let... Card = self.card; copies the card
+         - index of as _ internal label;
+         - index func is an external label
+         */
+        
+        // MARK: TODO: Lec 3 Flip Card
+        
         print("card chosen \(card)")
+        
     }
+    
+    // MARK: TODO: Lec 3 Index Of Func
+    // func index; return 0
+    // MARK: TODO: Lect 4 return trick
+
     
     // cards have these parameters, include within MemoryGame struct
     // so we know it is a MemoryGame Card type
@@ -41,7 +66,7 @@ struct MemoryGame<CardContent> {   // <Element> is a 'dont care type'
         var isFaceUp: Bool = true
         var isMatched: Bool = false
         var content: CardContent    // dont care what type of content
-        var id: Int                 // make identifiable for the ForEach in ContentView
+        var id: Int                 // make identifiable for the ForEach in EmojiMemoryGameView
         // example of 'constrains and gains'
     }
     
