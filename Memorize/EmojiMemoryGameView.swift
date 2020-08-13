@@ -64,7 +64,7 @@ struct EmojiMemoryGameView: View {
     }
 }
 
-
+// MARK: TODO: Lec 3 GeometryReader & Font
 struct CardView: View {
     var card: MemoryGame<String>.Card
 
@@ -83,6 +83,12 @@ struct CardView: View {
         }
         .aspectRatio(2/3, contentMode: ContentMode.fit) // cards 2:3 width to height ratio
     }
+    
+    // MARK: TODO: Lec 3 Control Panel
+    // move 'magic numbers' to vars and lets (3x)
+    // MARK: TODO: Lec 3 Body & Font Size funcs
+    // GeometryReader & ForEach views will require self. in xcode 11
+    
 }
 
 
