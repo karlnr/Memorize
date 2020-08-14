@@ -42,7 +42,6 @@ struct MemoryGame<CardContent> {  // <Element> is a 'dont care type'
     // example of 'constrains and gains'
   }
   
-  
 }
 
 // MARK: - LECTURE NOTES
@@ -69,4 +68,3 @@ struct MemoryGame<CardContent> {  // <Element> is a 'dont care type'
 // - let... Card = self.card; copies the card
 // - index of as _ internal label;
 // - index func is an external label
-

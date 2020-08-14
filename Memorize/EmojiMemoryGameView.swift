@@ -1,9 +1,10 @@
 //  EmojiMemoryGameView.swift
 //  Memorize
 //  Created by Karl Northrup on 8/7/20.
-
+//
 
 import SwiftUI
+
 
 struct EmojiMemoryGameView: View {
   
@@ -34,6 +35,7 @@ struct EmojiMemoryGameView: View {
     .padding()
     .foregroundColor(Color.orange) // Font and Color are types,
   }
+  
 }
 
 // MARK: TODO: Lec 3 GeometryReader & Font
@@ -63,12 +65,11 @@ struct CardView: View {
   
 }
 
-
-
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     EmojiMemoryGameView(viewModel: EmojiMemoryGame())
   }
+  
 }
 
 

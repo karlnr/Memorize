@@ -35,9 +35,6 @@ class EmojiMemoryGame {
     model.choose(card: card)
     // choose takes type card; label is card in func signature
   }
-  
-  
-  
 }
 
 
