@@ -3,34 +3,6 @@
 //  Created by Karl Northrup on 8/7/20.
 
 
-// MARK: Lec 2 View Notes
-/*  struct is a container for views, funcs, behaviours etc
- View is the rectangular area on screen
- var body means stored in memory
- some View means any type that behaves like a View (could be Text, etc)
- */
-
-// MARK: Lec 3 Reactive UI Notes
-/*  similarly add @ObservedObject to ModelView var viewModel
- 'I'm interested when something changes'
- ForEach requires Identifiable to redraw cards
- */
-
-// MARK: Lec 3 Ops in Views Notes
-/*   can declare var here for use within view builder; requires 'return'
- in front of ZStack { ... }
- example:
- var x: Int { return 23 }
- Zstack is viewbuilder; function that returns a view
- allows if/then and listing of views; otherwise
- limited functionality; cannot created vars within
- */
-
-// MARK: Lec 3 Declaritive Notes
-/*  modifiers rather than functions; declare rather than 'set' attributes;
- declaritive rather than imperative; independent of time
- */
-
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
@@ -98,3 +70,36 @@ struct ContentView_Previews: PreviewProvider {
     EmojiMemoryGameView(viewModel: EmojiMemoryGame())
   }
 }
+
+
+// MARK: - LECTURE NOTES
+//
+// MARK: Lec 2 View Notes
+//
+// struct is a container for views, funcs, behaviours etc
+// View is the rectangular area on screen
+// var body means stored in memory
+// some View means any type that behaves like a View;
+// could be Text, Image, etc
+//
+// MARK: Lec 3 Reactive UI Notes
+//
+// similarly add @ObservedObject to ModelView var viewModel
+// 'I'm interested when something changes'
+// ForEach requires Identifiable to redraw cards
+//
+// MARK: Lec 3 Ops in Views Notes
+//
+// can declare var here for use within view builder;
+// requires 'return' in front of ZStack { ... }
+//
+// example:
+//  var x: Int { return 23 }
+//  - Zstack is viewbuilder; function that returns a view
+//  - allows if/then and listing of views; otherwise
+//  - limited functionality; cannot created vars within
+//
+// MARK: Lec 3 Declaritive Notes
+//
+// modifiers rather than functions; declare rather than 'set' attributes;
+// declaritive rather than imperative; independent of time
