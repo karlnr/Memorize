@@ -8,10 +8,13 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
   
-  // MARK: TODO Lec 3 Reactive UI Observed
+  // MARK: [done] Lec 3 Reactive UI Observed
   
   // viewModel is pointer
-  var viewModel: EmojiMemoryGame      // not initialized; set in SceneDelegate
+  // Observed Object is a 'property wrapper'
+  // class EmojiMemoryGame set with Observable Object protocol
+  // 'redraw views every time EmojiMemoryGame publishes objecWillChange.send
+  @ObservedObject var viewModel: EmojiMemoryGame      // not initialized; set in SceneDelegate
   
   // var body called by system only
   var body: some View {
@@ -85,9 +88,9 @@ struct ContentView_Previews: PreviewProvider {
 //
 // MARK: Lec 3 Reactive UI Notes
 //
-// similarly add @ObservedObject to ModelView var viewModel
-// 'I'm interested when something changes'
-// ForEach requires Identifiable to redraw cards
+// - similarly add @ObservedObject to ModelView var viewModel
+//   'I'm interested when something changes'
+// - ForEach requires Identifiable to redraw cards
 //
 // MARK: Lec 3 Ops in Views Notes
 //

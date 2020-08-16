@@ -4,13 +4,14 @@
 
 import SwiftUI
 
-
-class EmojiMemoryGame {
-  // MARK: TODO: Lec 3 Reactive UI Observable Obj
-  // MARK: TODO: Lec 3 Reactive UI Published
+// MARK: [done] Lec 3 Reactive UI Observable Obj
+class EmojiMemoryGame: ObservableObject {
   
-  private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
-  // add EmojiMemoryGame prefix since func is static
+  // MARK: [done] Lec 3 Reactive UI Published
+  // Published is a property wrapped; var model is the property
+  // every time var model changes, published calls objectWillChange.send()
+  @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    // add EmojiMemoryGame prefix since func is static
   
   // static func makes it a function on the type instead of the instance
   static func createMemoryGame() -> MemoryGame<String> {
@@ -20,6 +21,9 @@ class EmojiMemoryGame {
       return emojis[pairIndex]
     }
   }
+  // replaced by propery wrapper @Published
+  //var objectWillChange: ObservableObjectPublisher
+  
   
   // MARK: - Access to the cards
   
@@ -30,10 +34,15 @@ class EmojiMemoryGame {
   
   // MARK: - Intent(s)
   
-  // MARK: TODO: Lec 3 Opt Object Will Change
   func choose (card: MemoryGame<String>.Card) {
-    model.choose(card: card)
     // choose takes type card; label is card in func signature
+    model.choose(card: card)
+    
+    // MARK: [done] Lec 3 Opt Object Will Change
+    // replaced by propery wrapper @Published
+    // that way dont have to insert objectwillChange.send for every func
+    //objectWillChange.send()
+
   }
 }
 
