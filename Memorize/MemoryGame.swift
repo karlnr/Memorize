@@ -9,6 +9,26 @@ struct MemoryGame<CardContent> {  // <Element> is a 'dont care type'
   // array of cards
   var cards: Array<Card>  // array, doesnt care what card type
   
+  // func that can be used by others to act on a card
+  mutating func choose(card: Card) { // should be _ card: to conform to API
+    // MARK: TODO: Lec 3 Flip Card
+    let chosenIndex: Int = index(of: card)  // func uses external name 'of'
+    cards[chosenIndex].isFaceUp = !cards[chosenIndex].isFaceUp
+    print("card chosen \(card)")
+  }
+
+  // MARK: TODO: Lec 3 Index Of Func
+  func index(of card: Card) -> Int {  // 'of' is external name; 'card' is internal name
+    for i in 0..<cards.count {
+      if cards[i].id == card.id {  // uses internal name
+        return i
+      }
+    }
+    return 0  // TODO: Lec 3 fix return
+  }
+
+  
+  
   // pass a function (Int) -> CardContent to init
   init(numberOfPairs: Int, cardContentFactory: (Int) -> CardContent) {
     cards = Array<Card>()
@@ -21,16 +41,6 @@ struct MemoryGame<CardContent> {  // <Element> is a 'dont care type'
       cards.shuffle()     // array shuffle
     }
   }
-  
-  // func that can be used by others to act on a card
-  mutating func choose(card: Card) -> Void {
-    // MARK: TODO: Lec 3 Flip Card
-    
-    print("card chosen \(card)")
-  }
-  
-  // MARK: TODO: Lec 3 Index Of Func
-  // func index; return 0
   
   // MARK: TODO: Lect 4 return trick
   
