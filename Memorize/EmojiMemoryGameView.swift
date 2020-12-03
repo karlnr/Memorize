@@ -22,33 +22,29 @@ struct EmojiMemoryGameView: View {
       // ForEach takes any iterable thing;
       // if not range Int, needs Identifiable
       ForEach (viewModel.cards) { card in
-        if self.viewModel.cards.count < 10 {        // large font unless 5 pairs
           CardView(card: card).onTapGesture {     // can drop the perform: part and make inline
-            self.viewModel.choose(card: card)
+            viewModel.choose(card: card)  // removed self; using Xcode 12 beta 4
             // xcode 11 'requires explicit self'
-          }
-          .font(Font.largeTitle)
-        } else {
-          CardView(card: card).onTapGesture {     // drop 'perform:' make inline
-            self.viewModel.choose(card: card)
-          }
-        }
+          }.aspectRatio(2/3, contentMode: ContentMode.fit)
       }
     }
     .padding()
     .foregroundColor(Color.orange) // Font and Color are types,
   }
-  
 }
 
 // MARK: TODO: Lec 3 GeometryReader & Font
 struct CardView: View {
   var card: MemoryGame<String>.Card
-  
   var body: some View {
-    
+    GeometryReader { geometry in
+      body(for: geometry.size)
+    }
+  }
+  
+  // MARK: [done] Lec 3 Body & Font Size funcs
+  func body(for size: CGSize) -> some View {
     ZStack {
-      
       if card.isFaceUp {
         RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
         RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
@@ -57,13 +53,18 @@ struct CardView: View {
       } else {
         RoundedRectangle(cornerRadius: 10.0).fill()
       }
-    }
-    .aspectRatio(2/3, contentMode: ContentMode.fit) // cards 2:3 width to height ratio
+    }.font(Font.system(size: fontSize(for: size)))
+        // size after 'for: ' is the func body size passed from GeometryReader
   }
   
-  // MARK: TODO: Lec 3 Control Panel
-  // move 'magic numbers' to vars and lets (3x)
-  // MARK: TODO: Lec 3 Body & Font Size funcs
+  // MARK: [done] Lec 3 Control Panel
+  let cornerRadius = 10.0
+  let lineWidth = 3
+  func fontSize(for size: CGSize) -> CGFloat {
+    // takes CGSize from GeometryReader
+    // returns a CGFloat for Font.system
+    min(size.width, size.height) * 0.75
+  }
   // GeometryReader & ForEach views will require self. in xcode 11
   
 }
